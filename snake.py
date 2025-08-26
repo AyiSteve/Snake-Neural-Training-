@@ -12,7 +12,7 @@ class snake:
         #Initial Variable
         self.body = collections.deque()
         self.body_set = set()
-
+        self.direction = pygame.math.Vector2(1,1)
         ###Create Body
 
         #Block one
@@ -30,6 +30,11 @@ class snake:
         self.body.append(randomBody2)
         self.body_set.add(randomBody2)
 
+    def update(self):
+        head = self.body[0]
+        self.body.pop()
+        self.body.appendleft(head+self.direction)
+        
 def randomPattern(Leading):
     pattern = [pygame.math.Vector2(Leading.x-1,Leading.y-1),pygame.math.Vector2(Leading.x+1,Leading.y-1),pygame.math.Vector2(Leading.x-1,Leading.y+1),pygame.math.Vector2(Leading.x+1,Leading.y+1)]
     return random.choice(pattern)
